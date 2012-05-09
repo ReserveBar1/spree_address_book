@@ -7,7 +7,7 @@ Spree::Order.class_eval do
     if self.ship_address
       self.bill_address = self.ship_address
     end
-    true  
+    true
   end
   
   def clone_billing_address
@@ -18,7 +18,7 @@ Spree::Order.class_eval do
   end
   
   def bill_address_id=(id)
-    address = Spree::Address.find(id)
+    address = Spree::Address.where(:id => id).first
     if address && address.user_id == self.user_id
       self["bill_address_id"] = address.id
       self.bill_address.reload
@@ -32,7 +32,7 @@ Spree::Order.class_eval do
   end
 
   def ship_address_id=(id)
-    address = Spree::Address.find(id)
+    address = Spree::Address.where(:id => id).first
     if address && address.user_id == self.user_id
       self["ship_address_id"] = address.id
       self.ship_address.reload
