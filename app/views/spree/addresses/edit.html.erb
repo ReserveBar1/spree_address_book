@@ -83,6 +83,12 @@
             <%= bill_form.text_field :alternative_phone %>
           </p>
         <% end %>
+        <p class="field" id="bis_business">
+			<%= bill_form.label :is_business, t(:is_business) %>
+          	<%= bill_form.radio_button :is_business, false -%>&nbsp;<%= t(:no) -%>&nbsp;&nbsp;
+          	<%= bill_form.radio_button :alternative_phone, true -%>&nbsp;<%= t(:yes) -%>
+        </p>
+
       </div>
     <% end %>
   </div>

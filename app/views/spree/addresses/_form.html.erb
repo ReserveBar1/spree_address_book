@@ -11,3 +11,10 @@
 <% if Spree::AddressBook::Config["alternative_#{address_name}_phone"] %>
   <%= address_field(address_form, :alternative_phone, address_name) %>
 <% end %>
+
+<%=    content_tag :p, :id => [address_name, :is_business].join('_'), :class => "field" do
+	separator = '<span class="req">*</span><br />'
+    address_form.label(t(:is_business)) + separator.html_safe + 
+    address_form.radio_button(:is_business, false) + "&nbsp;No&nbsp;&nbsp;".html_safe + 
+    address_form.radio_button(:is_business, true) + "&nbsp;Yes".html_safe
+end %>
