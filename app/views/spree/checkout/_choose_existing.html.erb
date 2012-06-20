@@ -11,7 +11,7 @@
         <%= link_to t(:edit), edit_address_path(address) %><br />
       </span>
     <% end %>
-    <label><%= radio_button_tag "order[#{address_type}_address_id]", 0 %> <%= t('other_address') %></label>
+    <label><%= radio_button_tag "order[#{address_type}_address_id]", 0 %> <%= t('new_address') %></label>
   </p>
 </div>
 <% end %>
