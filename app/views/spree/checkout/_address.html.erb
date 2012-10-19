@@ -27,7 +27,6 @@
   <% end %>
   <%= form.fields_for address_name do |address_form| %>
     <div class="inner">
-      <p class="field">&nbsp;</p>
       <%= render :partial => 'spree/addresses/form', :locals => {
         :address_name => address_name,
         :address_form => address_form,
