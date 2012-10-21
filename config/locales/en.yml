@@ -1,3 +1,7 @@
 en:
   other_address: "Other address"
   new_address: "New address"
+  activerecord:
+      attributes:
+          spree/address:
+              company: "Company Name"

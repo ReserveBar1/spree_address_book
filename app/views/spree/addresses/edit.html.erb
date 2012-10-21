@@ -10,6 +10,11 @@
     <%= form_for @address do |bill_form| %>
       <legend><%= t(:billing_address) %></legend>
       <div class="inner" data-hook="billing_inner">
+	      <p class="field" id="bis_business">
+			<%= bill_form.label :is_business, t(:is_business) %>
+        	<%= bill_form.radio_button :is_business, true -%>&nbsp;<%= t(:yes) -%>&nbsp;&nbsp;
+        	<%= bill_form.radio_button :is_business, false -%>&nbsp;<%= t(:no) -%>
+	      </p>
         <p class="field" id="bfirstname">
           <%= bill_form.label :firstname, t(:first_name) %><span class="req">*</span><br />
           <%= bill_form.text_field :firstname, :class => 'required' %>
@@ -83,11 +88,6 @@
             <%= bill_form.text_field :alternative_phone %>
           </p>
         <% end %>
-        <p class="field" id="bis_business">
-			<%= bill_form.label :is_business, t(:is_business) %>
-          	<%= bill_form.radio_button :is_business, false -%>&nbsp;<%= t(:no) -%>&nbsp;&nbsp;
-          	<%= bill_form.radio_button :is_business, true -%>&nbsp;<%= t(:yes) -%>
-        </p>
 
       </div>
     <% end %>

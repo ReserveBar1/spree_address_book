@@ -1,3 +1,10 @@
+<%=    content_tag :p, :id => [address_name, :is_business].join('_'), :class => "field" do
+	separator = '<span class="req">*</span><br />'
+    address_form.label(t(:is_business)) + separator.html_safe + 
+	address_form.radio_button(:is_business, false) + "&nbsp;Yes&nbsp;&nbsp;".html_safe + 
+	address_form.radio_button(:is_business, true) + "&nbsp;No".html_safe
+end %>
+
 <% ADDRESS_FIELDS.each do |field| %>
   <% if field == "country" %>
     <%= address_form.label :country_id, t(field, :scope => [:activerecord, :attributes, :address]) %><span class="req">*</span><br />
@@ -12,9 +19,4 @@
   <%= address_field(address_form, :alternative_phone, address_name) %>
 <% end %>
 
-<%=    content_tag :p, :id => [address_name, :is_business].join('_'), :class => "field" do
-	separator = '<span class="req">*</span><br />'
-    address_form.label(t(:is_business)) + separator.html_safe + 
-	address_form.radio_button(:is_business, false) + "&nbsp;Yes".html_safe + 
-	address_form.radio_button(:is_business, true) + "&nbsp;No&nbsp;&nbsp;".html_safe
-end %>
+
