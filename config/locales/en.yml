@@ -1,6 +1,7 @@
 en:
   other_address: "Other address"
   new_address: "New address"
+  name_on_card: "Name on Card"
   activerecord:
       attributes:
           spree/address:

@@ -3,9 +3,17 @@ Spree::Order.class_eval do
   attr_accessible :bill_address_id, :ship_address_id
   before_validation :clone_shipping_address, :if => "Spree::AddressBook::Config[:disable_bill_address]"
   
+  # We need t clone the shipping address into the billing address if we are not asking for it on the address form
+  # But later when we enter it on the payment form, we do not want it to be overriden with the ship address afterwards again.
   def clone_shipping_address
-    if self.ship_address
-      self.bill_address = self.ship_address
+    if Spree::AddressBook::Config[:show_bill_address_on_cc_form] == false
+      if self.ship_address
+        self.bill_address = self.ship_address
+      end
+    else
+      if self.bill_address_id == nil
+        self.bill_address = self.ship_address
+      end
     end
     true
   end

@@ -1,0 +1,5 @@
+<% if Spree::AddressBook::Config[:show_bill_address_on_cc_form] == true %>
+	<%= render :partial => 'spree/checkout/payment/gateway_with_bill_address', :locals => { :payment_method => payment_method } %>
+<% else %>
+	<%= render :partial => 'spree/checkout/payment/gateway_without_bill_address', :locals => { :payment_method => payment_method } %>
+<% end %>
