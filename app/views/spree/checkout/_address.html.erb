@@ -18,7 +18,7 @@
     <p class="field">
       <% @addresses.each_with_index do |address, idx| %>
       <span id="<%= [address_type, dom_id(address)].join('_') %>">
-        <label><%= form.radio_button "#{address_name}_id", address.id, :checked => (address.id == @order.send(address_name + "_id")) %> <%= address %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
+        <label><%= form.radio_button "#{address_name}_id", address.id, :checked => (address.id == @order.send(address_name + "_id")), :first_name => address.firstname, :last_name => address.lastname %> <%= address %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
       </span>
       <% end %>
       <label><%= form.radio_button "#{address_name}_id", 0 %> <%= t('new_address') %></label>
@@ -35,6 +35,7 @@
     </div>
   <% end %>
 </fieldset>
+
 </div>
 <% end %>
 <% if Spree::AddressBook::Config[:disable_bill_address] == false %>
