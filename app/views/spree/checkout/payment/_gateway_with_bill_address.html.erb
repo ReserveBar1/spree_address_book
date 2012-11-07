@@ -12,16 +12,16 @@
 <div class="columns alpha six" data-hook="<%= address_type %>_fieldset_wrapper">
 <h4><%= t(address_type + "_address")%></h4>
    <% if @addresses.present? %>
-  <div class="select_address">
-    <p class="field">
-      <% @addresses.each_with_index do |address, idx| %>
-      <span id="<%= [address_type, dom_id(address)].join('_') %>">
-        <label><%= radio_button_tag "order[#{address_name}_id]", address.id, :checked => (address.id == @order.send(address_name + "_id")) %> <%= address %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
-      </span>
-      <% end %>
-      <label><%= radio_button_tag "order[#{address_name}_id]", 0 %> <%= t('new_address') %></label>
-    </p>
-  </div>
+	  <div class="select_address">
+	    <p class="field">
+	      <% @addresses.each_with_index do |address, idx| %>
+	      <span id="<%= [address_type, dom_id(address)].join('_') %>">
+	        <label><%= radio_button_tag "order[#{address_name}_id]", address.id, :checked => (address.id == @order.send(address_name + "_id")) %> <%= address %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
+	      </span>
+	      <% end %>
+	      <label><%= radio_button_tag "order[#{address_name}_id]", 0 %> <%= t('new_address') %></label>
+	    </p>
+	  </div>
   <% end %>
   <%= fields_for address_name do |address_form| %>
     <div class="inner">
@@ -39,10 +39,11 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
+	<% if @addresses.present? %> 
       $(".inner").hide();
       $(".inner input").prop("disabled", true);
       $(".inner select").prop("disabled", true);
-
+	<% end %>
 
       $("input[name='order[bill_address_id]']:radio").change(function(){
         if ($("input[name='order[bill_address_id]']:checked").val() == '0') {
