@@ -76,7 +76,7 @@
 
         <p class="field" id="bzipcode">
           <%= bill_form.label :zipcode, t(:zip) %><span class="req">*</span><br />
-          <%= bill_form.text_field :zipcode, :class => 'required' %>
+          <%= bill_form.text_field :zipcode, :class => 'required digits' %>
         </p>
         <p class="field" id="bphone">
           <%= bill_form.label :phone, t(:phone) %><span class="req">*</span><br />
@@ -95,3 +95,4 @@
   <%= f.submit t(:update) %>
 </fieldset>
 <% end %>
+
