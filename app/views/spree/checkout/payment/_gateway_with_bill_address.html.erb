@@ -23,7 +23,7 @@
 	    </p>
 	  </div>
   <% end %>
-  <%= fields_for address_name do |address_form| %>
+  <%= fields_for :bill_address, @order.bill_address do |address_form| %>
     <div class="inner">
       <%= render :partial => 'spree/addresses/form', :locals => {
         :address_name => address_name,
