@@ -1,9 +1,14 @@
-<%=    content_tag :p, :id => [address_name, :is_business].join('_'), :class => "field" do
-	separator = '<span class="req">*</span><br />'
-    address_form.label(t(:is_business)) + separator.html_safe + 
-	address_form.radio_button(:is_business, true) + "&nbsp;Yes&nbsp;&nbsp;".html_safe + 
-	address_form.radio_button(:is_business, false) + "&nbsp;No".html_safe
-end %>
+<% if address_name != "bill_address" %>
+	<%=    content_tag :p, :id => [address_name, :is_business].join('_'), :class => "field" do
+		separator = '<span class="req">*</span><br />'
+	    address_form.label(t(:is_business)) + separator.html_safe + 
+		address_form.radio_button(:is_business, true) + "&nbsp;Yes&nbsp;&nbsp;".html_safe + 
+		address_form.radio_button(:is_business, false) + "&nbsp;No".html_safe
+	end %>
+
+<% else %>
+	<%= address_form.hidden_field :is_business, :value => false %>
+<% end %>
 
 <% ADDRESS_FIELDS.each do |field| %>
   <% if field == "country" %>
