@@ -3,7 +3,7 @@
 <% ['billing', 'shipping'].each do |address_type|
   next if address_type == 'billing' && Spree::AddressBook::Config[:disable_bill_address]
   address_name = "#{address_type[0...4]}_address" %>
-<div class="columns alpha six" data-hook="<%= address_type %>_fieldset_wrapper">
+<div class="columns alpha twelve" data-hook="<%= address_type %>_fieldset_wrapper">
 <fieldset id="<%= address_type %>">
   <legend><%= t(address_type + "_address")%></legend>
   <% if address_type == 'shipping' && !Spree::AddressBook::Config[:disable_bill_address] %>
@@ -18,7 +18,7 @@
     <p class="field">
       <% @addresses.each_with_index do |address, idx| %>
       <span id="<%= [address_type, dom_id(address)].join('_') %>">
-        <label><%= form.radio_button "#{address_name}_id", address.id, :checked => (address.id == @order.send(address_name + "_id")), :first_name => address.firstname, :last_name => address.lastname %> <%= address %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
+        <label><%= form.radio_button "#{address_name}_id", address.id, :checked => (address.id == @order.send(address_name + "_id")), :first_name => address.firstname, :last_name => address.lastname %> <%= address_as_one_liner(address) %></label> <%= link_to t(:edit), edit_address_path(address, :refer => "checkout") %><br />
       </span>
       <% end %>
       <label><%= form.radio_button "#{address_name}_id", 0 %> <%= t('new_address') %></label>

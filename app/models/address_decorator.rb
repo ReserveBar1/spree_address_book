@@ -20,7 +20,7 @@ Spree::Address.class_eval do
     "#{firstname} #{lastname}: #{zipcode}, #{country}, #{state || state_name}, #{city}, #{address1} #{address2}"
     "<span style='display:inline-block;vertical-align:top;'>#{firstname} #{lastname} <br />#{address1} #{address2}<br />#{city}, #{state || state_name} #{zipcode}<br />#{country}</span>".html_safe
   end
-  
+    
   unless Spree::Address.new.respond_to?(:destroy_with_saving_used)
     def destroy_with_saving_used
       if can_be_deleted?

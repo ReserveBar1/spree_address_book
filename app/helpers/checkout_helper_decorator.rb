@@ -31,4 +31,14 @@ Spree::CheckoutHelper.module_eval do
       content_tag(:noscript, form.text_field(:state_name, :class => 'required')) +
       javascript_tag("document.write(\"#{state_elements.html_safe}\");")
   end
+  
+  def address_as_one_liner(address)
+    content_tag :span, :class => 'address_one_liner' do
+      content_tag( :span, "#{address.firstname} #{address.lastname},") +
+      content_tag( :span, "#{address.address1} #{address.address2},") +
+      content_tag( :span, "#{address.city},") +
+      content_tag( :span, "#{address.state.abbr || address.state_name} #{address.zipcode},") +
+      content_tag( :span, "#{address.country}")
+    end
+  end
 end
