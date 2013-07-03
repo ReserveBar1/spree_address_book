@@ -19,9 +19,13 @@ Spree::CheckoutController.class_eval do
   # set bill_address if we are on the payment page
   def set_bill_address
     return unless params[:order] && params[:state] == "payment"
-    if params[:order][:bill_address_id] && params[:order][:bill_address_id].to_i > 0
+    if (params[:order][:bill_address_id] && params[:order][:bill_address_id].to_i > 0) || (object_params[:bill_address_id] && object_params[:bill_address_id].to_i > 0)
       # user selected an existing address
-      @order.update_attribute(:bill_address_id , params[:order][:bill_address_id])
+      if (object_params[:bill_address_id] && object_params[:bill_address_id].to_i > 0)
+        @order.update_attribute(:bill_address_id , object_params[:bill_address_id])
+      else
+        @order.update_attribute(:bill_address_id , params[:order][:bill_address_id])
+      end
       params[:order].delete(:bill_address_id)
       object_params.delete(:bill_address_id)
     else
