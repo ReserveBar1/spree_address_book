@@ -8,7 +8,11 @@
     </tr>
   </thead>
   <tbody>
-  <% current_user.addresses.each do |address| %>
+  <% 
+    bill_addrs = @cards.all.map(&:address_id)
+    addresses = current_user.addresses.reject { |a| bill_addrs.include?(a.id) }
+  %>
+  <% addresses.each do |address| %>
     <tr class="<%= cycle('even', 'odd') %>">
       <td><%= address %></td>
       <td>

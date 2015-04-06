@@ -29,6 +29,7 @@ Spree::CheckoutController.class_eval do
       params[:order].delete(:bill_address_id)
       object_params.delete(:bill_address_id)
     else
+      return if @order.bill_address.present?
       # user has entered a new address
       @order.bill_address_attributes = params[:bill_address]
       bill_address = @order.bill_address
