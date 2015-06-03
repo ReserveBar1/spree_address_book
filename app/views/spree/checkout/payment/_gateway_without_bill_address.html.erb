@@ -1,8 +1,20 @@
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+<script>
+  window.onBraintreeDataLoad = function() {
+    <% if Rails.env == "production" %>
+      BraintreeData.setup("<%= @order.retailer.bt_merchant_id %>", 'checkout_form_payment', BraintreeData.environments.production);
+    <% else %>
+      BraintreeData.setup("<%= @order.retailer.bt_merchant_id %>", 'checkout_form_payment', BraintreeData.environments.sandbox);
+    <% end %>
+  };
+</script>
+
 <%= image_tag 'creditcards/creditcard.gif', :id => 'creditcard-image' %>
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
 
 <p class="field" data-hook="name_on_card">
-	<%= label_tag nil, t(:name_on_card) %><br />
+  <%= label_tag nil, t(:name_on_card) %><br />
   <%= text_field_tag "#{param_prefix}[first_name]", '', :id => 'name_on_card', :class => 'required', :size => 19 %>
   <span class="req">*</span>
 </p>
@@ -31,3 +43,5 @@
   <span class="req">*</span>
   <%= link_to "(#{t(:whats_this)})", spree.content_path('cvv'), :target => '_blank', :onclick => "window.open(this.href,'cvv_info','left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1');return false", "data-hook" => "cvv_link" %>
 </p>
+<script src="https://js.braintreegateway.com/v1/braintree-data.js" async=true>
+</script>
